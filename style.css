@@ -1,0 +1,851 @@
+
+/* ---------- General ---------- */
+
+:root {
+    --background: #11182e;
+    --surface: #19233e;
+    --surface-light: #202e50;
+    --blue: #537bff;
+    --blue-light: #8eabff;
+    --text: #f2f5ff;
+    --muted: #8997b7;
+    --border: rgba(151, 174, 230, 0.13);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(ellipse at 85% 5%,
+            rgba(62, 91, 190, 0.16), transparent 38%),
+        var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+button, a {
+    font: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+    width: min(100% - 48px, 1150px);
+    margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-size: 21px;
+    font-weight: 750;
+    letter-spacing: -0.7px;
+    text-decoration: none;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    color: var(--blue-light);
+    background: rgba(83, 123, 255, 0.12);
+    border: 1px solid rgba(83, 123, 255, 0.2);
+    border-radius: 12px;
+}
+
+.brand-icon svg {
+    width: 27px;
+    height: 27px;
+}
+
+.blue-text,
+.intro h1 span {
+    color: var(--blue-light);
+}
+
+.header-label,
+.live-badge,
+.notes-count {
+    font-size: 11px;
+    font-weight: 650;
+    letter-spacing: 1px;
+    color: var(--muted);
+}
+
+.header-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #65dba0;
+    box-shadow: 0 0 12px rgba(101, 219, 160, 0.5);
+}
+
+/* ---------- Introduction ---------- */
+
+.intro {
+    padding: 48px 0 34px;
+}
+
+.eyebrow {
+    color: var(--blue-light);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.intro h1 {
+    font-size: clamp(30px, 5vw, 45px);
+    line-height: 1.2;
+    letter-spacing: -1.7px;
+    font-weight: 750;
+}
+
+.intro-text {
+    color: var(--muted);
+    margin-top: 13px;
+    font-size: 14px;
+}
+
+/* ---------- Main workspace ---------- */
+
+.workspace {
+    display: grid;
+    grid-template-columns: 225px minmax(0, 1fr);
+    align-items: start;
+    gap: 28px;
+}
+
+.sidebar {
+    position: sticky;
+    top: 24px;
+    padding: 20px 14px;
+    background: linear-gradient(
+        145deg,
+        rgba(31, 45, 77, 0.85),
+        rgba(22, 31, 54, 0.95)
+    );
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.sidebar > .eyebrow {
+    padding: 0 9px;
+    margin-bottom: 4px;
+}
+
+.sidebar-title {
+    padding: 0 9px;
+    margin-bottom: 20px;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.session-nav {
+    display: grid;
+    gap: 9px;
+}
+
+.session-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 10px;
+    text-align: left;
+    color: var(--text);
+    background: rgba(10, 17, 34, 0.35);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        border-color 0.2s,
+        transform 0.2s;
+}
+
+.session-link:hover {
+    background: rgba(83, 123, 255, 0.09);
+    border-color: var(--border);
+}
+
+.session-link.active {
+    background: rgba(83, 123, 255, 0.15);
+    border-color: rgba(83, 123, 255, 0.42);
+}
+
+.session-icon {
+    display: grid;
+    place-items: center;
+    width: 37px;
+    height: 37px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(83, 123, 255, 0.12);
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 750;
+}
+
+.session-link.active .session-icon {
+    background: var(--blue);
+    color: white;
+}
+
+.session-info {
+    display: grid;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.session-info strong {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.session-info small {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.session-arrow {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.session-link.active .session-arrow {
+    color: var(--blue-light);
+}
+
+.sidebar-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 22px 8px 0;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* ---------- Session panels ---------- */
+
+.session-panels {
+    min-width: 0;
+}
+
+.session-panel {
+    min-width: 0;
+    animation: panel-in 0.25s ease;
+}
+
+.session-panel[hidden] {
+    display: none !important;
+}
+
+@keyframes panel-in {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content,
+.video-section {
+    min-width: 0;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 17px;
+}
+
+.section-heading h2 {
+    font-size: 19px;
+    font-weight: 650;
+    letter-spacing: -0.4px;
+}
+
+.section-heading .eyebrow {
+    margin-bottom: 3px;
+}
+
+.live-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(101, 219, 160, 0.08);
+    padding: 7px 11px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+/* ---------- Video ---------- */
+
+.video-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background: #080d19;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.15);
+}
+
+#lectureVideo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #080d19;
+}
+
+.video-shortcuts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 12px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+.video-shortcuts button {
+    min-width: 58px;
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface-light);
+    color: var(--blue-light);
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.video-shortcuts button:hover {
+    background: rgba(83, 123, 255, 0.2);
+    border-color: var(--blue);
+}
+
+.video-shortcuts span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.video-footer {
+    min-height: 57px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+.video-footer > span {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.blue-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--blue);
+}
+
+.fullscreen-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface-light);
+    color: var(--text);
+    padding: 8px 11px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.fullscreen-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.fullscreen-btn:hover {
+    background: rgba(83, 123, 255, 0.18);
+    border-color: rgba(83, 123, 255, 0.5);
+}
+
+/* ---------- Topics ---------- */
+
+.notes-section {
+    margin-top: 26px;
+    padding: 22px;
+    background: linear-gradient(
+        145deg,
+        rgba(31, 45, 77, 0.85),
+        rgba(22, 31, 54, 0.95)
+    );
+    border: 1px solid var(--border);
+    border-radius: 17px;
+}
+
+.notes-count {
+    padding: 6px 10px;
+    background: rgba(83, 123, 255, 0.1);
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.notes-description {
+    color: var(--muted);
+    font-size: 13px;
+    margin: -3px 0 20px;
+}
+
+.notes-list {
+    display: grid;
+    gap: 9px;
+}
+
+.note-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+    padding: 13px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: rgba(10, 17, 34, 0.38);
+    color: var(--text);
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        border-color 0.2s,
+        transform 0.2s;
+}
+
+.note-item:hover,
+.note-item.active {
+    background: rgba(66, 100, 210, 0.15);
+    border-color: rgba(83, 123, 255, 0.35);
+}
+
+.note-item:hover {
+    transform: translateY(-1px);
+}
+
+.note-number {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 33px;
+    height: 33px;
+    border-radius: 10px;
+    background: rgba(83, 123, 255, 0.12);
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 750;
+}
+
+.note-content {
+    display: grid;
+    gap: 3px;
+    flex: 1;
+    min-width: 0;
+}
+
+.note-content strong {
+    font-size: 12px;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+}
+
+.note-content > span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.timestamp {
+    padding: 6px 8px;
+    border-radius: 7px;
+    background: rgba(83, 123, 255, 0.12);
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.play-arrow {
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.note-item.active .play-arrow {
+    color: var(--blue-light);
+}
+
+.hint {
+    margin-top: 19px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.hint span {
+    color: var(--blue-light);
+    margin-right: 5px;
+}
+
+/* ---------- Session 02 placeholder ---------- */
+
+.coming-soon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 330px;
+    padding: 35px 25px;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(83, 123, 255, 0.12),
+            transparent 55%
+        ),
+        rgba(10, 17, 34, 0.35);
+}
+
+.coming-soon-icon {
+    display: grid;
+    place-items: center;
+    width: 66px;
+    height: 66px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(83, 123, 255, 0.25);
+    border-radius: 20px;
+    background: rgba(83, 123, 255, 0.12);
+    color: var(--blue-light);
+}
+
+.coming-soon-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.coming-soon-card h2 {
+    max-width: 330px;
+    font-size: 23px;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+}
+
+.coming-soon-card > p:last-child {
+    max-width: 320px;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 28px 0;
+    margin-top: 30px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.signature {
+    text-align: center;
+    color: #5e6a7e;
+    opacity: 0.6;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin: 0;
+    padding: 0 0 18px;
+    font-weight: 400;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+    .app {
+        width: min(100% - 36px, 760px);
+    }
+
+    .workspace {
+        grid-template-columns: 190px minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .sidebar {
+        padding: 17px 10px;
+    }
+
+    .session-link {
+        gap: 8px;
+        padding: 10px 8px;
+    }
+
+    .session-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .notes-section {
+        padding: 16px;
+    }
+
+    .note-item {
+        gap: 8px;
+        padding: 11px 9px;
+    }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 650px) {
+    .app {
+        width: min(100% - 28px, 520px);
+    }
+
+    .header {
+        min-height: 72px;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .header-label {
+        font-size: 9px;
+        letter-spacing: 0.7px;
+    }
+
+    .intro {
+        padding: 36px 0 26px;
+    }
+
+    .intro h1 {
+        letter-spacing: -1px;
+    }
+
+    .intro-text {
+        font-size: 13px;
+    }
+
+    .workspace {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .sidebar {
+        position: static;
+        padding: 15px;
+    }
+
+    .sidebar-title {
+        margin-bottom: 13px;
+    }
+
+    .session-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .session-link {
+        align-items: flex-start;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .session-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+    }
+
+    .session-info strong {
+        font-size: 11px;
+    }
+
+    .session-info small {
+        font-size: 9px;
+    }
+
+    .session-arrow {
+        display: none;
+    }
+
+    .sidebar-note {
+        margin-top: 14px;
+    }
+
+    .section-heading h2 {
+        font-size: 17px;
+    }
+
+    .notes-section {
+        padding: 14px;
+        margin-top: 20px;
+    }
+
+    .note-item {
+        gap: 9px;
+        padding: 11px 9px;
+    }
+
+    .note-number {
+        width: 29px;
+        height: 29px;
+        font-size: 10px;
+    }
+
+    .note-content strong {
+        font-size: 11px;
+    }
+
+    .timestamp {
+        font-size: 10px;
+        padding: 5px 6px;
+    }
+
+    .play-arrow {
+        display: none;
+    }
+
+    .video-footer {
+        padding: 9px 10px;
+    }
+
+    .video-footer > span,
+    .fullscreen-btn {
+        font-size: 11px;
+    }
+
+    .fullscreen-btn {
+        padding: 8px;
+    }
+
+    .coming-soon-card {
+        min-height: 280px;
+        padding: 28px 18px;
+    }
+
+    .coming-soon-card h2 {
+        font-size: 21px;
+    }
+
+    .footer {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .header-label {
+        font-size: 8px;
+    }
+
+    .session-nav {
+        grid-template-columns: 1fr;
+    }
+
+    .session-link {
+        align-items: center;
+    }
+
+    .note-item {
+        gap: 7px;
+        padding: 10px 7px;
+    }
+
+    .note-content strong {
+        font-size: 10px;
+    }
+
+    .notes-section {
+        padding: 11px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Session 02 video sizing */
+#session2 .video-card {
+    overflow: hidden;
+}
+
+#session2 wistia-player[media-id="8uqhkjmpum"] {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.73913;
+    padding-top: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+#session2 wistia-player[media-id="8uqhkjmpum"]:not(:defined) {
+    padding-top: 57.5%;
+}
